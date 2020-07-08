@@ -21,5 +21,10 @@ pipeline {
                 }
             }
         }
+         stage('Docker') {
+            steps {
+                sh 'docker version'
+            }
+        }
     }
 }
