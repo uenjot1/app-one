@@ -2,8 +2,8 @@ pipeline {
      agent any
      
      tools {
-    		maven 'mvn-3.5.2'
-  	 }
+        maven 'apache-maven-3.0.1' 
+    }
      stages {        
           stage("Mvn") {
                steps {
