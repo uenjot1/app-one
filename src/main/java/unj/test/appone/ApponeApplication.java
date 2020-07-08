@@ -1,4 +1,4 @@
-package unj.test.appone.appone;
+package unj.test.appone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
