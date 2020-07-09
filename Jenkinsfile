@@ -33,6 +33,11 @@ pipeline {
                 sh 'docker images'
             }
         } 
+          stage('Docker push') {
+            steps {
+                sh 'docker push uenjot/app-one'
+            }
+        } 
         
         
          stage('info-end') {
