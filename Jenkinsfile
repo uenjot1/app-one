@@ -6,7 +6,25 @@ pipeline {
      }
      
       stages {
-        stage('Build') {
+        stage('info-start') {
+            steps {
+                sh 'ls -l'
+            }
+        }
+        
+         stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests -Dmaven.repo.local=/var/jenkins_home/workspace/unj1/m2 clean package'
+            }
+        }
+         stage('Docker') {
+            steps {
+                sh 'docker version'
+            }
+        } 
+        
+        
+         stage('info-end') {
             steps {
                 sh 'pwd'
                 sh 'ls -l'
