@@ -17,6 +17,16 @@ pipeline {
                 sh 'mvn -B -DskipTests -Dmaven.repo.local=/var/jenkins_home/workspace/unj1/m2 clean package'
             }
         }
+         stage('Test') { 
+            steps {
+                sh 'mvn test' 
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'                
+                }
+            }
+         } 
          stage('Docker') {
             steps {
                 sh 'docker version'
@@ -26,7 +36,6 @@ pipeline {
         
          stage('info-end') {
             steps {
-                sh 'pwd'
                 sh 'ls -l'
             }
         }
