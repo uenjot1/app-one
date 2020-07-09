@@ -1,11 +1,11 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-    stages {
+     agent any
+     
+     tools {
+        maven 'apache-maven-3.6.3' 
+     }
+   
+     stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -17,15 +17,14 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml' 
-                    publishHTML (target: [
-				      reportDir: 'target/jacoco-report',
-				      reportFiles: 'index.html',
-				      reportName: "Coverage"
-   					 ])
+                    junit 'target/surefire-reports/*.xml'                
                 }
             }
+         stage('Build') {
+            steps {
+                sh 'docker version'
+            }
         }
-        
+       } 
     }
 }
