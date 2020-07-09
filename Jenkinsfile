@@ -30,6 +30,7 @@ pipeline {
          stage('Docker') {
             steps {
                 sh 'docker build -t uenjot/app-one .'
+                sh 'docker images'
             }
         } 
         
