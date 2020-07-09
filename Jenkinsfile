@@ -29,7 +29,7 @@ pipeline {
          } 
          stage('Docker') {
             steps {
-                sh 'docker version'
+                sh 'docker build -t uenjot/app-one .'
             }
         } 
         
