@@ -35,6 +35,7 @@ pipeline {
         } 
           stage('Docker push') {
             steps {
+              	sh 'docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD'
                 sh 'docker push uenjot/app-one'
             }
         } 
