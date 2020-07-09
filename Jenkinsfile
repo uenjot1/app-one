@@ -19,7 +19,7 @@ pipeline {
         }
          stage('Test') { 
             steps {
-                sh 'mvn test' 
+                sh 'mvn -Dmaven.repo.local=/var/jenkins_home/workspace/unj1/m2  test' 
             }
             post {
                 always {
