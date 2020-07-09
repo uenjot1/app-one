@@ -1,26 +1,26 @@
 pipeline {
      agent any
      
+     tools {
+        maven 'apache-maven-3.6.3' 
+     }
+   
      stages {
         stage('Build') {
             steps {
-            withMaven(maven : 'apache-maven-3.6.3') {
-				sh 'mvn -B -DskipTests clean package'
-				}            
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') { 
             steps {
-            withMaven(maven : 'apache-maven-3.6.3') {
-			    sh 'mvn test' 
-				}            
+                sh 'mvn test' 
             }
             post {
                 always {
                     junit 'target/surefire-reports/*.xml'                
                 }
             }
-         }
+         } 
          stage('Docker') {
             steps {
                 sh 'docker version'
