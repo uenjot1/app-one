@@ -1,6 +1,11 @@
 pipeline {
      agent any
      
+      environment {
+	    registryCredential = 'DOCKER_HUB'
+	    dockerImage = ''
+  	}
+     
      tools {
         maven 'apache-maven-3.6.3' 
      }
@@ -29,14 +34,15 @@ pipeline {
          } 
          stage('Docker') {
             steps {
-                sh 'docker build -t uenjot/app-one .'
+            	dockerImage = docker.build uenjot/app-one + ":$BUILD_NUMBER"
                 sh 'docker images'
             }
         } 
-          stage('Docker push') {
+         stage('Docker push') {
             steps {
-              	sh 'docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD'
-                sh 'docker push uenjot/app-one'
+                docker.withRegistry( '', registryCredential ) {
+            	dockerImage.push()
+          		}
             }
         } 
         
