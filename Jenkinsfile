@@ -42,7 +42,7 @@ pipeline {
          stage('Docker push') {
             steps {
              script{
-	                docker.withRegistry( '', $DOCKER_HUB ) {
+	                docker.withRegistry( '', 'DOCKER_HUB' ) {
 	            	dockerImage.push()
           		}
           		}
