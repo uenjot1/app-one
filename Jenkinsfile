@@ -34,14 +34,18 @@ pipeline {
          } 
          stage('Docker') {
             steps {
-            	dockerImage = docker.build uenjot/app-one + ":$BUILD_NUMBER"
-                sh 'docker images'
+				  script{
+				      dockerImage = docker.build uenjot/app-one + ":$BUILD_NUMBER"
+               		 sh 'docker images'
+				  }         	
             }
         } 
          stage('Docker push') {
             steps {
-                docker.withRegistry( '', registryCredential ) {
-            	dockerImage.push()
+             script{
+	                docker.withRegistry( '', registryCredential ) {
+	            	dockerImage.push()
+          		}
           		}
             }
         } 
