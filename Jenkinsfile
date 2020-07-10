@@ -2,7 +2,6 @@ pipeline {
      agent any
      
       environment {
-	    registryCredential = 'DOCKER_HUB'
 	    dockerImage = ''
   	}
      
@@ -43,7 +42,7 @@ pipeline {
          stage('Docker push') {
             steps {
              script{
-	                docker.withRegistry( '', registryCredential ) {
+	                docker.withRegistry( '', $DOCKER_HUB ) {
 	            	dockerImage.push()
           		}
           		}
