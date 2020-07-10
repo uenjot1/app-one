@@ -35,9 +35,9 @@ pipeline {
          stage('Docker') {
             steps {
 				  script{
-				      dockerImage = docker.build uenjot/app-one + ":$BUILD_NUMBER"
-               		 sh 'docker images'
-				  }         	
+				  	def dockerImage = docker.build("uenjot/app-one:${env.BUILD_ID}")           		
+				  }
+				  sh 'docker images'         	
             }
         } 
          stage('Docker push') {
