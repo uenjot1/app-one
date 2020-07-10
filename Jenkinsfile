@@ -35,7 +35,7 @@ pipeline {
          stage('Docker') {
             steps {
 				  script{
-				  	def dockerImage = docker.build("uenjot/app-one:${env.BUILD_ID}")           		
+				  	dockerImage = docker.build("uenjot/app-one:${env.BUILD_ID}")           		
 				  }
 				  sh 'docker images'         	
             }
